@@ -7,6 +7,10 @@ worth keeping, press F9 and it becomes a clip. Press Ctrl+Alt+1 to 9 to play it 
 your mic. It can also send another app's sound, like Spotify, a YouTube tab or a game, to your
 friends.
 
+<p align="center">
+  <img src="https://i.imgur.com/9DCIwM9.png" alt="The trollboard window showing the Clips tab with two saved clips">
+</p>
+
 ## Features
 
 - Clip the last 2 to 30 seconds of a call with one hotkey. Silence is trimmed and the volume is
