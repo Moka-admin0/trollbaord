@@ -77,7 +77,8 @@ pub fn capture_process(pid: u32, feed: &Feed, stop: &AtomicBool) -> Result<()> {
             if info.flags.silent {
                 mono.resize(frames_read as usize, 0.0);
             } else {
-                mono.extend(packet.chunks_exact(BYTES_PER_FRAME).map(stereo_frame_to_mono));
+                let (frames, _) = packet.as_chunks::<BYTES_PER_FRAME>();
+                mono.extend(frames.iter().map(stereo_frame_to_mono));
             }
             feed.push(&mono);
         }
@@ -86,8 +87,9 @@ pub fn capture_process(pid: u32, feed: &Feed, stop: &AtomicBool) -> Result<()> {
     Ok(())
 }
 
-fn stereo_frame_to_mono(frame: &[u8]) -> f32 {
-    let left = f32::from_le_bytes([frame[0], frame[1], frame[2], frame[3]]);
-    let right = f32::from_le_bytes([frame[4], frame[5], frame[6], frame[7]]);
+fn stereo_frame_to_mono(frame: &[u8; BYTES_PER_FRAME]) -> f32 {
+    let [l0, l1, l2, l3, r0, r1, r2, r3] = *frame;
+    let left = f32::from_le_bytes([l0, l1, l2, l3]);
+    let right = f32::from_le_bytes([r0, r1, r2, r3]);
     (left + right) / 2.0
 }
