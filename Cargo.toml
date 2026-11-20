@@ -1,0 +1,27 @@
+[package]
+name = "trollboard"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+description = "A Windows soundboard that clips what your friends say on Discord and plays it back through your mic."
+license = "MIT"
+repository = "https://github.com/Moka-admin0/trollbaord"
+readme = "README.md"
+keywords = ["soundboard", "discord", "audio", "wasapi", "egui"]
+categories = ["multimedia::audio"]
+publish = false
+
+[dependencies]
+anyhow = "1"
+cpal = "0.15"
+eframe = { version = "0.37.0", default-features = false, features = ["accesskit", "clipboard", "default_fonts", "glow", "links", "persistence"] }
+egui = { version = "0.37.0", default-features = false, features = ["monochrome_emoji_fonts"] }
+fastrand = "2"
+hound = "3"
+serde = { version = "1", features = ["derive"] }
+wasapi = "0.27"
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_Storage_FileSystem", "Win32_System_Threading", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+
+[profile.release]
+lto = "thin"
+strip = true
