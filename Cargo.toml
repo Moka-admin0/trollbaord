@@ -1,6 +1,6 @@
 [package]
 name = "trollboard"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.95"
 description = "A Windows soundboard that clips what your friends say on Discord and plays it back through your mic."
